@@ -45,4 +45,84 @@ public class Producto {
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<Item_Factura> itemsFactura;
+
+    public List<Item_Factura> getItemsFactura() {
+        return itemsFactura;
+    }
+
+    public void setItemsFactura(List<Item_Factura> itemsFactura) {
+        this.itemsFactura = itemsFactura;
+    }
+
+    public Proveedores getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedores proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public Clasificacion getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(Clasificacion clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+
+    public Boolean getIva() {
+        return iva;
+    }
+
+    public void setIva(Boolean iva) {
+        this.iva = iva;
+    }
+
+    public Integer getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Integer idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Integer getIdClasificacion() {
+        return idClasificacion;
+    }
+
+    public void setIdClasificacion(Integer idClasificacion) {
+        this.idClasificacion = idClasificacion;
+    }
+
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+    public Double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(Double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
 }

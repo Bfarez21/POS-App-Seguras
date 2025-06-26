@@ -5,12 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "usuario")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
     @Id
@@ -18,28 +15,74 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column(name = "id_persona")
-    private Integer idPersona;
-
     @Column(name = "user")
     private String user;
 
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "id_persona", insertable = false, updatable = false)
+    // Relación con Persona (One-to-One)
+    @OneToOne
+    @JoinColumn(name = "id_persona")
     private Persona persona;
 
-    @ManyToMany
-    @JoinTable(
-            name = "usuario_rol",
-            joinColumns = @JoinColumn(name = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_rol")
-    )
-    private List<Rol> roles;
+    // Relación con Rol (Many-to-One)
+    @ManyToOne
+    @JoinColumn(name = "id_rol")
+    private Rol rol;
 
-    public boolean sexiste(String user, String password) {
+    // ELIMINAMOS la relación directa con Factura
+    // Las facturas se acceden a través de persona.getFacturas()
+
+    // Constructors
+    public Usuario() {}
+
+    public Usuario(String user, String password) {
+        this.user = user;
+        this.password = password;
+    }
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public boolean siexiste(String user, String password) {
         // Lógica de validación implementada en el servicio
         return true;
     }

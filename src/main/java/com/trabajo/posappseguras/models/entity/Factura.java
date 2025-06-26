@@ -47,4 +47,84 @@ public class Factura {
 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private List<Item_Factura> items;
+
+    public Factura(String ruc, Date fecha, Double descuento, Double total) {
+        this.ruc = ruc;
+        this.fecha = fecha;
+        this.descuento = descuento;
+        this.total = total;
+    }
+
+    public Tipo_Pago getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(Tipo_Pago tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public List<Item_Factura> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item_Factura> items) {
+        this.items = items;
+    }
+
+    public Integer getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(Integer idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public Integer getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Integer idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getIdTipoPago() {
+        return idTipoPago;
+    }
+
+    public void setIdTipoPago(Integer idTipoPago) {
+        this.idTipoPago = idTipoPago;
+    }
+
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
 }

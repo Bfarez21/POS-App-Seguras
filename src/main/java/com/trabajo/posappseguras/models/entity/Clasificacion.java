@@ -20,6 +20,36 @@ public class Clasificacion {
     @Column(name = "grupo")
     private String grupo;
 
-    @OneToMany(mappedBy = "clasificacion", cascade = CascadeType.ALL)
+    // Relación con Producto
+    @OneToMany(mappedBy = "clasificacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> productos;
+
+
+    public Clasificacion(String grupo) {
+        this.grupo = grupo;
+    }
+
+    public Integer getIdClasificacion() {
+        return idClasificacion;
+    }
+
+    public void setIdClasificacion(Integer idClasificacion) {
+        this.idClasificacion = idClasificacion;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
 }

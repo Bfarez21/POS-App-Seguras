@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "rol")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Rol {
     @Id
@@ -23,15 +22,52 @@ public class Rol {
     @Column(name = "estado")
     private Boolean estado;
 
-    @ManyToMany
-    @JoinTable(
-            name = "rol_competencia",
-            joinColumns = @JoinColumn(name = "id_rol"),
-            inverseJoinColumns = @JoinColumn(name = "id_competencias")
-    )
-    private List<Competencia> competencias;
+    // Relación con Usuario
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;
 
-    public boolean sexisterol(String rol) {
+    public Rol() {
+    }
+
+    public Rol(Boolean estado, String rol) {
+        this.estado = estado;
+        this.rol = rol;
+    }
+
+    public Integer getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    // metodos
+    public boolean siexisterol(String rol) {
         // Lógica de validación implementada en el servicio
         return true;
     }

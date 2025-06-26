@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "persona")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Persona {
     @Id
@@ -32,8 +31,88 @@ public class Persona {
     @Column(name = "correo")
     private String correo;
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
-    private List<Usuario> usuarios;
+    // Relación con Usuario (One-to-One)
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Usuario usuario;
+
+    // Relación con Factura
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Factura> facturas;
+
+    public Persona() {
+    }
+
+    public Persona(String nombre, String apellido, String dni, String celular, String correo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.celular = celular;
+        this.correo = correo;
+    }
+
+    public Integer getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Integer idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
+    }
 
     public Persona buscarP(String dni) {
         // Lógica de búsqueda implementada en el servicio
