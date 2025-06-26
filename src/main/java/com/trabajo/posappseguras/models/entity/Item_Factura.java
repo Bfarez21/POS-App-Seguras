@@ -1,5 +1,6 @@
 package com.trabajo.posappseguras.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,10 +34,12 @@ public class Item_Factura {
 
     @ManyToOne
     @JoinColumn(name = "id_factura", insertable = false, updatable = false)
+    @JsonBackReference
     private Factura factura;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+    @JsonBackReference
     private Producto producto;
 
     public Item_Factura(Integer cantidad, Double precio, Double subtotal) {

@@ -1,5 +1,7 @@
 package com.trabajo.posappseguras.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,13 +39,16 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "id_clasificacion", insertable = false, updatable = false)
+    @JsonBackReference
     private Clasificacion clasificacion;
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor", insertable = false, updatable = false)
+    @JsonBackReference
     private Proveedores proveedor;
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Item_Factura> itemsFactura;
 
     public List<Item_Factura> getItemsFactura() {

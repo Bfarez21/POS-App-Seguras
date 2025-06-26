@@ -1,5 +1,7 @@
 package com.trabajo.posappseguras.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,11 +26,13 @@ public class Usuario {
     // Relación con Persona (One-to-One)
     @OneToOne
     @JoinColumn(name = "id_persona")
+    @JsonManagedReference
     private Persona persona;
 
     // Relación con Rol (Many-to-One)
     @ManyToOne
     @JoinColumn(name = "id_rol")
+    @JsonBackReference
     private Rol rol;
 
     // ELIMINAMOS la relación directa con Factura

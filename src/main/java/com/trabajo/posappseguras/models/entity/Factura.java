@@ -1,5 +1,7 @@
 package com.trabajo.posappseguras.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,13 +41,16 @@ public class Factura {
 
     @ManyToOne
     @JoinColumn(name = "id_persona", insertable = false, updatable = false)
+    @JsonBackReference
     private Persona persona;
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_pago", insertable = false, updatable = false)
+    @JsonBackReference
     private Tipo_Pago tipoPago;
 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Item_Factura> items;
 
     public Factura(String ruc, Date fecha, Double descuento, Double total) {
