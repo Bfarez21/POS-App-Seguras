@@ -1,0 +1,34 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: appdb
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: springpass
+    ports:
+      - "9898:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  springboot:
+    image: bryanbf24/pos-api-spring  # <- Reemplaza con tu imagen de Docker Hub
+    container_name: spring_app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/bd_sistema_facturacion
+      SPRING_DATASOURCE_USERNAME: springuser
+      SPRING_DATASOURCE_PASSWORD: springpass
+    networks:
+      - appnet
+
+volumes:
+  mysql_data:
+
+networks:
+  appnet:
